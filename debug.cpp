@@ -1,48 +1,40 @@
-#include <iostream>
-#include <sstream>
 
-#include <time.h>  //added for the random number generator seed
-#include <cstdlib> //added to use the rand function
+//*Sample program for Pointers*/
+
+#include <iostream>
+#include <string>
 
 int main()
 {
-    int target;
-    std::string userString; // input = ALL int, char, string
-    int guess = -1;
+    int givenInt;
+    float givenFloat;
+    double givenDouble;
+    std::string givenString;
+    char givenChar;
+    int *pointerGivenInt, **pointerPointerGivenInt;
 
-    srand(time(NULL));         //set the seed for the random number generator
-    target = rand() % 100 + 1; //generate the 'random' number
+    pointerGivenInt = &givenInt;
+    pointerPointerGivenInt = &pointerGivenInt;
 
-    while (guess != target)
-    {
-        std::cout << "Guess a number between 0 and 100: ";
-        std::getline(std::cin, userString);
-        //convert to an int
-        std::stringstream(userString) >> guess;
-        std::cout << userString << "\n"; // in case it's a char or string
+    std::cin >> givenDouble;    
+    //We need to use cin.ignore so cin will ignore
+    //the characters in the buffer leftover 
+    //from the givenDouble
+    std::cin.ignore();
+    std::cin >> givenChar;
+    // same
+    std::cin.ignore();
+    std::getline(std::cin, givenString);
 
-        if (guess > target)
-            std::cout << "Your guess is too high\n";
-        else if (guess < target)
-            std::cout << "Your guess is too low\n";
-        else
-            std::cout << "You guessed the target!\n";
-        if (userString == "q") // bc = string
-        {
-            std::cout << "The number was " << target << "\n";
-            break; // out of while()
-        }
-    }
-    
-    for (;;)
-    {
-        std::cout << "This for loop will run forever\n";
-    }
+    std::cout << "string = " << givenString << "\n";
+    std::cout << "character = " << (char) givenChar << "\n\n"; // y typecast?
 
-    while (1)
-    {
-        std::cout << "This while loop will run forever\n";
-    }
+    std::cout << "address string = " << &givenString << "\n"; // not like C
+    std::cout << "address character = " << (void *) &givenChar << "\n\n"; 
+        // y typecast? y not (char *)?
+
+    std::cout << "value of givenInt = " << *pointerGivenInt << "\n";
+    std::cout << "double dereference of givenInt = " << **pointerPointerGivenInt << "\n"; 
 
     return 0;
 }
