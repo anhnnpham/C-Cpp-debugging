@@ -1,32 +1,37 @@
-/*Goal: In the programming quiz, use a while loop to prompt
-**the user to guess a target number. 
-**Tell the user if the guess is too high or too low. 
-**The user enters -1  or guesses the target number to end 
-**the program.
-*/
 #include <iostream>
-#include <sstream>
+#include<sstream>
+
+#include <time.h> //added for the random number generator seed
+#include <cstdlib>//added to use the rand function
 
 int main()
 {
-    int target = 55;
+    int target;
+    std::string userString; // input = ALL int, char, string
     int guess = -1;
+
+    srand(time(NULL));  //set the seed for the random number generator
+    target = rand() %100 + 1; //generate the 'random' number
 
     while (guess != target)
     {
-        std::cout << "Guess a number between 0 and 100: ";
-        std::cin >> guess;
-        std::cout << guess << "\n";
-        if (guess > target)
-            std::cout << "Your guess is too high\n";
-        else if (guess < target)
-            std::cout << "Your guess is too low\n";
-        else if (guess == -1)
+        std::cout<<"Guess a number between 0 and 100: ";
+        std::getline (std::cin,userString);
+        //convert to an int
+        std::stringstream(userString) >> guess;
+        std::cout<<userString<<"\n"; // in case it's a char or string
+        
+        if(guess > target)
+            std::cout<<"Your guess is too high\n";
+        else if(guess < target)
+            std::cout<<"Your guess is too low\n";
+        else
+            std::cout<<"You guessed the target!\n";
+        if(userString == "q") // bc = string
         {
-            std::cout << "good bye!";
-            break; // out of While()
+            std::cout<<"The number was "<<target<<"\n";
+            break; // out of while()
         }
     }
-    std::cout << "Bingo" << std::endl;
     return 0;
 }
