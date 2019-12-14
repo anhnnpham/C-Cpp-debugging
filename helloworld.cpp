@@ -16,19 +16,3 @@ int main()
     helloworld
     cout << endl;
 }
-void guessingGame(int *ranNum) {
-    int guessedNum = 0, counter = 0;
-    printf("Guess it bitch!\n");
-    do {
-        scanf("%d", &guessedNum);
-        if (guessedNum < *ranNum) {
-            printf("Higher bitch!\n");
-        } 
-        else if (guessedNum > *ranNum) {
-            printf("Lower bitch!\n");
-        }
-        counter++;
-    } 
-    while (guessedNum != *ranNum);
-    printf("%d tries.\n", counter);
-}

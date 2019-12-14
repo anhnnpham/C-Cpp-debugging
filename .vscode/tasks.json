@@ -2,10 +2,10 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "build helloworld",
+        "label": "build debug",
         "type": "shell",
-        "command": "gcc",
-        "args": ["-g", "-o", "helloworld", "helloworld.c"],
+        "command": "g++",
+        "args": ["-g", "-o", "debug", "debug.cpp"],
         "group": {
           "kind": "build",
           "isDefault": true
