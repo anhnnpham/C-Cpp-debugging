@@ -1,33 +1,32 @@
-#include<iostream>
-using namespace std;
+/*Goal: In the programming quiz, use a while loop to prompt
+**the user to guess a target number. 
+**Tell the user if the guess is too high or too low. 
+**The user enters -1  or guesses the target number to end 
+**the program.
+*/
+#include <iostream>
+#include <sstream>
 
 int main()
 {
-    float in1, in2;
-    char devOp = '\0'; // NULL for pointers
+    int target = 55;
+    int guess = -1;
 
-    cout << "Enter two numbers:\n";
-    cin >> in1;
-    cin >> in2;
-    cout << "Enter the operation '+','-','*','/':\n";
-    cin >> devOp;
-    float ans;
-    switch (devOp)
+    while (guess != target)
     {
-        case '+':
-            ans = in1 + in2;
-            break;
-        case '-':
-            ans = in1 - in2;
-            break;
-        case '*':
-            ans = in1 * in2;
-            break;
-        case '/':
-            ans = in1 / in2;
-            break;
-        default:
-            break;
+        std::cout << "Guess a number between 0 and 100: ";
+        std::cin >> guess;
+        std::cout << guess << "\n";
+        if (guess > target)
+            std::cout << "Your guess is too high\n";
+        else if (guess < target)
+            std::cout << "Your guess is too low\n";
+        else if (guess == -1)
+        {
+            std::cout << "good bye!";
+            break; // out of While()
+        }
     }
+    std::cout << "Bingo" << std::endl;
     return 0;
 }
