@@ -3,42 +3,31 @@ using namespace std;
 
 int main()
 {
-    int A, B, C, Q;
-    cout<<"A\tB\tC\t(A && B && C)\t\t(!B||!C)\t\t(A&&(!B||!C))\t\tQ\n";
+    float in1, in2;
+    char devOp = '\0'; // NULL for pointers
 
-    A = B = C = 0;
-    Q = (A && B && C) || (A && (!B || !C));
-    cout << A << "\t" << B << "\t" << C << "\t"; // A B C
-    cout << (A && B && C) << "\t\t";
-    cout << (!B || !C) << "\t\t";
-    cout << (A && (!B || !C)) << "\t\t" << Q << "\n";
-
-    A = B = 0, C = 1;
-    Q = (A && B && C) || (A && (!B || !C));
-    cout << A << "\t" << B << "\t" << C << "\t" << (A && B && C) << "\t\t" << (!B || !C) << "\t\t" << (A && (!B || !C)) << "\t\t" << Q << "\n";
-
-    A = 0, B = 1, C = 0;
-    Q = (A && B && C) || (A && (!B || !C));
-    cout << A << "\t" << B << "\t" << C << "\t" << (A && B && C) << "\t\t" << (!B || !C) << "\t\t" << (A && (!B || !C)) << "\t\t" << Q << "\n";
-
-    A = 0, B = 1, C = 1;
-    Q = (A && B && C) || (A && (!B || !C));
-    cout << A << "\t" << B << "\t" << C << "\t" << (A && B && C) << "\t\t" << (!B || !C) << "\t\t" << (A && (!B || !C)) << "\t\t" << Q << "\n";
-
-    A = 1, B = C = 0;
-    Q = (A && B && C) || (A && (!B || !C));
-    cout << A << "\t" << B << "\t" << C << "\t" << (A && B && C) << "\t\t" << (!B || !C) << "\t\t" << (A && (!B || !C)) << "\t\t" << Q << "\n";
-
-    A = 1, B = 0, C = 1;
-    Q = (A && B && C) || (A && (!B || !C));
-    cout << A << "\t" << B << "\t" << C << "\t" << (A && B && C) << "\t\t" << (!B || !C) << "\t\t" << (A && (!B || !C)) << "\t\t" << Q << "\n";
-
-    A = B = 1, C = 0;
-    Q = (A && B && C) || (A && (!B || !C));
-    cout << A << "\t" << B << "\t" << C << "\t" << (A && B && C) << "\t\t" << (!B || !C) << "\t\t" << (A && (!B || !C)) << "\t\t" << Q << "\n";
-
-    A = B = C = 1;
-    Q = (A && B && C) || (A && (!B || !C));
-    cout << A << "\t" << B << "\t" << C << "\t\t" << (A && B && C) << "\t\t" << (!B || !C) << "\t\t" << (A && (!B || !C)) << "\t\t" << Q << "\n";
+    cout << "Enter two numbers:\n";
+    cin >> in1;
+    cin >> in2;
+    cout << "Enter the operation '+','-','*','/':\n";
+    cin >> devOp;
+    float ans;
+    switch (devOp)
+    {
+        case '+':
+            ans = in1 + in2;
+            break;
+        case '-':
+            ans = in1 - in2;
+            break;
+        case '*':
+            ans = in1 * in2;
+            break;
+        case '/':
+            ans = in1 / in2;
+            break;
+        default:
+            break;
+    }
     return 0;
 }
