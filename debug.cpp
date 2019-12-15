@@ -1,53 +1,39 @@
-/*Goal: practice searching an array in C++
-**There is an array of integers. The length of the arrays to be searched 
-**varies. A user will enter an integer and the program will search the array.
-**If the value is in the array, the program will return the location of 
-**the element. If the value is not in the array, the user will be notified 
-**that the value is not in the array. To exit the program the user will enter -1.
+/*Goal: practice using multidimensional arrays.
+**Write a program that will accept values for a 4x4 array 
+**and a vector of size 4 (a one dimensional array) 
+**Use the dot product to multiply the array by the vector. 
+**Print the resulting vector. It should contain four elements.
 */
-#include <iostream>
-#include <stdio.h>
-using namespace std;
 
+#include <iostream>
+using namespace std;
 int main()
 {
-    int searchArray[10] = {324, 4567, 6789, 5421345, 7, 65, 8965, 12, 342, 485};
-    //use searchKey for the number to be found
-    //use location for the array index of the found value
-    int searchKey, location;
-    int i = 0;
-    //TODO: write code to determine if integers entered by
-    //the user are in searchArray
+    //TODO: multiply a 4x4 array with vector of size 4.
+    //Print the resultant product vector
+    int vtr[4];
     
-    while (1) // dangerous if there's no Break guaranteed!!!
+    const int row = 4, column = 4;
+    int arr4x4[row][column];
+    for (size_t i = 0; i < row; i++)
     {
-        location = -1;
-        i = 0;
-        cin >> searchKey;
-        if (searchKey == -1) // to exit --> no need to touch the While array
+        for (size_t j = 0; j < column; j++)
         {
-            break;
+            cin >> arr4x4[i][j];
         }
+    }
 
-        while (searchArray[i] != '\0')
+    int rslt[column];
+    for (size_t i = 0; i < row; i++)
+    {
+        int sum = 0;
+        
+        cin >> vtr[i];
+        for (size_t j = 0; j < column; j++)
         {
-            if (searchArray[i] == searchKey)
-            {
-                location = i;
-                break;
-            }
-            ++i;
+            sum += arr4x4[i][j] * vtr[i];
         }
-
-        //Use these commands to give feedback to the user
-        if (location != -1)
-        {
-            cout << searchKey << " is at location " << location << " in the array.\n";
-        }
-        else
-        {
-            cout << searchKey << " is not in the array.\n";
-        }
-    } 
-    return 0;
+        rslt[i] = sum;
+        cout << rslt[i] << " " << endl;
+    }
 }
