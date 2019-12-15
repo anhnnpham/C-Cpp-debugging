@@ -13,6 +13,5 @@ int main()
         ++i;
         cout << word << " ";     
     }
-    helloworld
     cout << endl;
 }
