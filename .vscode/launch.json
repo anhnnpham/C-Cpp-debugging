@@ -11,7 +11,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/debug.exe",
+            "program": "${workspaceFolder}/currentDebug.exe",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",

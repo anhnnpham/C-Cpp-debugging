@@ -10,7 +10,7 @@
  **
  **The user inputs are in the input.txt file.*/
 
-#include "main.hpp"
+// #include "main.hpp"
 
 int main()
 {
