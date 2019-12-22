@@ -1,83 +1,27 @@
-#include <iostream>
-using namespace std;
-class Student
-{
-    string name;
-    int id;
-    int gradDate;
-
-public:
-    void setName(string nameIn);
-    void setId(int idIn);
-    void setGradDate(int dateIn);
-    string getName();
-    int getId();
-    int getGradDate();
-    void print();
-};
-
-void Student::setName(string nameIn)
-{
-    name = nameIn;
-}
-
-void Student::setId(int idIn)
-{
-    id = idIn;
-}
-
-void Student::setGradDate(int gradDateIn)
-{
-    gradDate = gradDateIn;
-}
-
-void Student::print()
-{
-    cout << name << " " << id << " " << gradDate;
-}
-
-string Student::getName()
-{
-    return name;
-}
-
-int Student::getId()
-{
-    return id;
-}
-
-int Student::getGradDate()
-{
-    return gradDate;
-}
+#include "main.hpp"
 
 int main()
 {
-    int integer1;
-    float float1;
-    Student student1; // obj
-
-    integer1 = 4;   //assign a value to integer1
-    float1 = 4.333; //assign a value to float1
-    // string as parameter
-    student1.setName("Catherine Gamboa"); //assign a value to the student name
-    student1.setId(54345);                //assign a value to the student id number
-    student1.setGradDate(2017);           //assign a value to the student grad date
-
-    cout << "integer1 = " << integer1 << "\n";
-    cout << "float1 = " << float1 << "\n\n";
-
-    //There are two ways we can print the values of our class:
-    //The first is to call the print function we created.
-    cout << "Using Student::print()\n";
-    cout << "Student1 = ";
-    student1.print();
-    cout << "\n\n";
-
-    //The second is to access each member of the class using the get functions
-    cout << "Using the student access functions\n";
-    cout << "Student1 name = " << student1.getName() << "\n";
-    cout << "Student1 ID = " << student1.getId() << "\n";
-    cout << "Student1 Grad Date = " << student1.getGradDate() << "\n";
+    Gameboard game1;
+    game1.setGameSpace(0,0,'x');
+    game1.setGameSpace(0,1,'x');
+    game1.setGameSpace(0,2,'x');
+    game1.setGameSpace(0,3,'y');
+    game1.setGameSpace(1,0,'x');
+    game1.setGameSpace(2,0,'x');
+    game1.setGameSpace(3,0,'x');
+    game1.setGameSpace(3,1,'x');
+    game1.setGameSpace(3,2,'x');
+    game1.setGameSpace(3,3,'x');
+    
+    if(game1.fourInRow() == 1)
+    {
+        cout<<"X got four in a row! \n\n";
+    }
+    else
+    {
+        cout<<"X did not get four in a row :(\n\n";
+    }
+    game1.printInfo();
     return 0;
 }
