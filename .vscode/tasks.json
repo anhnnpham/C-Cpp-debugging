@@ -8,8 +8,8 @@
         "args": [
           "-g",
           "-o",
-          "currentDebug",
-          "currentDebug.cpp"
+          "main",
+          "main.cpp"
         ],
         "group": {
           "kind": "build",
