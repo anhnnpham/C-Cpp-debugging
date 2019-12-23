@@ -1,33 +1,52 @@
-/* Create a 4x4 game board
-Prompt the first user (the 'x' user) to enter their name
-Prompt the second user (the 'o' user) to enter their name
-Prompt the 'x' user to select a grid position where they would like to place an 'x'.
-Prompt the 'o' user to select a grid position where they would like to place an 'o'.
-After each user has a turn, check for any row, column, diagonal that has 4 'x's or 4 'o's.
-If 4 'x's are found in the same col, row, diagonal, declare the 'x' user the winner.
-If 4 'o's are found in the same col, row, diagonal, declare the 'o' user the winner.
-End the game and declare the winner.
-If the grid is filled (each player gets 8 turns) and there is not a row, column, diagonal
-with 4 of the same symbol, the game is tied. Declare a tie game. */
+/*GOAL: Practice writing and calling functions*/
+#include "main.h"
 
-#include "mainFunctions.cpp"
+const int CLASS_SIZE = 6;
 int main()
 {
-    string xPlayer, oPlayer;
-    Gameboard theGame;
+    //Use two classes, student and courseEnrollment
+    Student studentsInClass[CLASS_SIZE];
+    CourseEnrollment course1;
     
-    /* cout << "x player pls: ";
-    getline(cin, xPlayer);
-    cout << xPlayer << '\n';
-    theGame.setName(xPlayer, 0);
-    
-    cout << "o player pls: ";
-    getline(cin, oPlayer);
-    cout << oPlayer << '\n';
-    theGame.setName(oPlayer, 1); */
+    //there are 100 students to be enrolled
+    static int studentNumber = 1000;
+    int grade;
+    int userInput;
 
-    gameBegin(theGame);
-    theGame.printInfo();
+    //asign student id to each student
+    for(int i = 0; i < CLASS_SIZE; i++)
+    {
+        studentsInClass[i].setStudentID(studentNumber);
+        studentNumber++;
+    }
+    
+    //assign grades to all students
+    for(int i = 0; i <CLASS_SIZE; i++)
+    {
+      for(int j = 0; j <10 ; j++)
+        {
+            scanf("%d", &grade);
+            studentsInClass[i].setGrade(j,grade);
+        }  
+    }
+    
+    //print out all students grades
+    for(int i = 0; i < CLASS_SIZE; i++)
+    {
+        studentsInClass[i].printGrades();
+        std::cout<<"\nMin grade = "<<studentsInClass[i].getMin()<<"\n";
+        std::cout<<"Max grade = "<<studentsInClass[i].getMax()<<"\n";
+        std::cout<<"Grade Average = "<<studentsInClass[i].getAverageGrade()<<"\n\n";
+    }
+    
+    course1.addStudents(studentsInClass);
+    
+    int *allGrades;
+    allGrades = course1.getAllGrades();
+    allGrades = course1.sortAllGrades();
+    std::cout<<"ALLGRADES\n";
+    std::cout<<"Lowest grade for entire course = "<<course1.getMinGrade()<<"\n";
+    std::cout<<"Highest grade for entire course = "<<course1.getMaxGrade()<<"\n";
+    std::cout<<"Avg grade for entire course = "<<course1.getAvgGrade()<<"\n";
     return 0;
 }
-
