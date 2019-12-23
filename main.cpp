@@ -1,52 +1,37 @@
-/*GOAL: Practice writing and calling functions*/
-#include "main.h"
+/*Goal: look at a program, and see if we can make it more versatile
+**Modify the compare class in main.hpp to include the 
+**additional function members.*/
+#include "main.hpp"
 
-const int CLASS_SIZE = 6;
 int main()
 {
-    //Use two classes, student and courseEnrollment
-    Student studentsInClass[CLASS_SIZE];
-    CourseEnrollment course1;
+    Compare c;
+    int a = 5; 
+    int b = 4;
+    int d = 6;
+    float f1 = 5.43;
+    float f2 = 6.32;
+    float f3 = 99.43;
+    char c1 = 'c';
+    char c2 = 'z';
+    char c3 = 'm';
+    int arrayInt[5] = {65,43,2,898,678};
+    float arrayInF[4] = {4.5,4.9,4.3,6.5};
+    char arrayInC[6] = {'w','z','t','h','e','c'};
+    std::cout<<c.findSmaller(a,b)<<" is the smaller of "<<a<<" and "<<b<<"\n";
+    std::cout<<c.findSmaller(f1,f2)<<" is the smaller of "<<f1<<" and "<<f2<<"\n";
+    std::cout<<c.findSmaller(c1,c2)<<" is the smaller of "<<c1<<" and "<<c2<<"\n\n";
     
-    //there are 100 students to be enrolled
-    static int studentNumber = 1000;
-    int grade;
-    int userInput;
-
-    //asign student id to each student
-    for(int i = 0; i < CLASS_SIZE; i++)
-    {
-        studentsInClass[i].setStudentID(studentNumber);
-        studentNumber++;
-    }
-    
-    //assign grades to all students
-    for(int i = 0; i <CLASS_SIZE; i++)
-    {
-      for(int j = 0; j <10 ; j++)
-        {
-            scanf("%d", &grade);
-            studentsInClass[i].setGrade(j,grade);
-        }  
-    }
-    
-    //print out all students grades
-    for(int i = 0; i < CLASS_SIZE; i++)
-    {
-        studentsInClass[i].printGrades();
-        std::cout<<"\nMin grade = "<<studentsInClass[i].getMin()<<"\n";
-        std::cout<<"Max grade = "<<studentsInClass[i].getMax()<<"\n";
-        std::cout<<"Grade Average = "<<studentsInClass[i].getAverageGrade()<<"\n\n";
-    }
-    
-    course1.addStudents(studentsInClass);
-    
-    int *allGrades;
-    allGrades = course1.getAllGrades();
-    allGrades = course1.sortAllGrades();
-    std::cout<<"ALLGRADES\n";
-    std::cout<<"Lowest grade for entire course = "<<course1.getMinGrade()<<"\n";
-    std::cout<<"Highest grade for entire course = "<<course1.getMaxGrade()<<"\n";
-    std::cout<<"Avg grade for entire course = "<<course1.getAvgGrade()<<"\n";
+    std::cout<<c.findSmaller(a,b,d)<<" is the smallest of "<<a<<", "<<b<<", "<<d<<"\n";
+    std::cout<<c.findSmaller(f1,f3,f3)<<" is the smallest of "<<f1<<", "<<f2<<", "<<f3<<"\n";
+    std::cout<<c.findSmaller(c1,c2,c3)<<" is the smallest of "<<c1<<", "<<c2<<", "<<c3<<"\n\n";
+    std::cout<<c.findSmaller(arrayInt, 5)<<" is the smallest of the input array\n";
+    std::cout<<c.findSmaller(arrayInF, 4)<<" is the smallest of the input array\n";
+    std::cout<<c.findSmaller(arrayInC, 6)<<" is the smallest of the input array\n";
     return 0;
 }
+
+
+
+
+
