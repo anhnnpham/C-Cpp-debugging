@@ -1,14 +1,33 @@
+/*Goal: create a generic class.
+**Create a class called Multiplier. 
+**It multiplies two numbers - integers
+**or floats. */
+
 #include "main.hpp"
- 
-int main(void) 
+
+
+int main()
 {
-   Shape sh1(4, 4);    // Declare shape1
-   Shape sh2(2, 6);    // Declare shape2
-   Shape sh3;          //Declare shape3
-   
-   int total = sh1 + sh2; // overloaded
-   cout << "\nsh1.Area() = " << sh1.Area();
-   cout << "\nsh2.Area() = " << sh2.Area();
-   cout << "\nTotal = "<<total;
-   return 0;
+    Multiplier<int> multi1; // a generic class 
+    Multiplier<float> multi3;
+    
+    int input1,input2;
+    cin>>input1;
+    cin>>input2;
+    
+    multi1.setM1(input1);
+    multi1.setM2(input2);
+    multi1.setProduct();
+    multi1.printEquation();
+    
+    cout<<"\n";
+    float input3, input4;
+    cin>>input3;
+    cin>>input4;    
+
+    multi3.setM1(input3);
+    multi3.setM2(input4);
+    multi3.setProduct();
+    multi3.printEquation();
+    return 0;
 }
