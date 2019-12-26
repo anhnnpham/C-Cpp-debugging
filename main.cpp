@@ -1,23 +1,25 @@
-// Goal: pracitce constructing vectors
-// and their iterators
-// Call the vector vFloat
-// Call the iterator it
 
+#include <iostream>
 
-#include "main.hpp"
+using namespace std;
 
-int main ()
+int main()
 {
-  vector<int> vInts; 
-  vInts.assign(10, 5);
-  printVector(vInts);
-  cout << '\n' << vInts.size();
-  assignFunction(vInts, 1);
-  cout << '\n' << vInts.size();
-  pushBackFunction(vInts, 2);
-  
-  emplaceFunction(vInts,1, 3);
+    unsigned char half_limit = 150;
 
-  return 0;
+    //Hint to the answer: run this code as is.
+    //then uncomment the line below. What happens?
+    // cout << "half_limit = " << half_limit << "\n";
+
+    cout << "i = \n";
+    for (unsigned char i = 0; i < 2 * half_limit; ++i)
+    {
+
+        cout << i << ", ";
+        //This is another hint...
+        //Why do we have a break here?
+        if (i > 60)
+            break;
+    }
+    return 0;
 }
-
