@@ -1,44 +1,55 @@
-#include<iostream>
-//The class accepts strings, 
-//so we need to use namespace
+// constructing vectors
+// constructing vectors
+/* In this programming quiz, 
+use these member functions to complete the functions in the header file:
+
+assign
+push_back
+insert
+emplace */
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
-template <class T>
-class Multiplier
-{
-private:
-    T mul1, mul2, prod;
+void printVector(vector<int> vIn);
+void assignFunction(vector<int> vInts, int in);
+void pushBackFunction(vector<int> vInts, int in);
+void emplaceFunction(vector<int> vInts, int loc, int in);
 
-public:
-    void setM1(T input1)
+void printVector(vector<int> vIn)
+{   //printing the contents of vIns
+    //TODO: Finish the function
+    vector<int>::iterator ite;
+    for (ite = vIn.begin(); ite != vIn.end(); ite++)
     {
-        mul1 = input1;
+        cout << *ite << " ";
     }
-    void setM2(T input2);
-    void setProduct();
-    void printEquation();
-};
-
-/* template <class T>
-void Multiplier<T>::setM1(T input1)
-{
-    mul1 = input1;
-} */
-
-template <class T>
-void Multiplier<T>::setM2(T input2)
-{
-    mul2 = input2;
+    // cout << endl;
+    
 }
 
-template <class T>
-void Multiplier<T>::setProduct()
+void assignFunction(vector<int> vInts, int in)
 {
-    prod = mul1 * mul2;
+    cout << "\nassigning " << in << " and printing the vector\n";
+    //TODO: Finish the function
+    vInts.assign(10, in);
+    printVector(vInts);
 }
-
-template <class T>
-void Multiplier<T>::printEquation()
+void pushBackFunction(vector<int> vInts, int in)
 {
-    cout << mul1 << " * " << mul2 << " = " << prod << endl;
+    cout << "\npush back " << in << " and printing the vector\n";
+    //TODO: Finish the function
+    vInts.push_back(in);
+    printVector(vInts);
+    cout << '\n' << vInts.size();
+}
+void emplaceFunction(vector<int> vInts, int loc, int in)
+{
+    vector<int>::iterator it;
+    cout << "\nemplacing " << in << " and printing the vector\n";
+    //TODO: Finish the function
+    vInts.emplace(vInts.begin() + loc, in);
+    printVector(vInts);
+    cout << '\n' << vInts.size();
 }
