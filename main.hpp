@@ -1,60 +1,13 @@
-#include "Car.h"
+/** 
+ * You'll need to finish the Doubler function here AND fix the parameters 
+ *   of its signature in Doubler.h.
+ */
 
-#include <stdlib.h>
-#include <time.h>
-#include <iostream>
-
-class Car
+// #include "Doubler.h"
+void Doubler(int *val);
+// TODO: Add the relevant arguments into the function below
+void Doubler(int *val) 
 {
-    private:
-        bool in_working_condition_;
-    public:
-        Car();
-        // Determine whether or not the car is still drivable after some wear and tear.
-        void wearAndTear();
-        // Try to drive the car.
-        bool drive();
-        // Fix the car.
-        void fix();
-};
-Car::Car()
-{
-    // initialize random seed for wearAndTear
-    srand(time(NULL));
-    // start off in working condition
-    in_working_condition_ = true;
-}
-
-// Determine whether or not the car is still drivable after some wear and tear.
-void Car::wearAndTear()
-{
-    // 50% chance that the car is still working after wear and tear
-    int condition = rand() % 10; // scale: 0 to 9 
-    condition >= 5 ? in_working_condition_ = true : in_working_condition_ = false; // ternary
-}
-
-// Try to drive the car.
-bool Car::drive()
-{
-    bool didDrive = false;
-
-    if (in_working_condition_)
-    {
-        std::cout << "Driving!" << std::endl;
-        wearAndTear();
-        didDrive = true;
-    }
-    else
-    {
-        std::cout << "Broken down. Please fix." << std::endl;
-        didDrive = false;
-    }
-    return didDrive;
-}
-
-// Fix the car.
-void Car::fix()
-{
-    in_working_condition_ = true;
-    std::cout << "Fixed!" << std::endl;
+  // TODO: your code for Doubler here!
+      *val *= 2;
 }

@@ -1,18 +1,53 @@
-#include "Car.h"
-
-int main()
+class myStack
 {
-    Car car;
+  //hidden data members and member functions
+private:
+  int size;
+  int *stack;
+  int top;
+  //return true if stack is full
+  bool isFull()
+  {
+    return size == top - 1;
+  }
+  bool isEmpty()
+  {
+    return top == -1;
+  }
 
-    // try to drive 10 times
-    for (int i = 0; i < 10; i++)
+  //interface of class myStack
+  //this is only accessible for user
+public:
+  //allocate memory for stack
+  myStack(int _size = 50)
+  {
+    size = _size;
+    stack = new int[size]; 
+
+    //initially stack is empty
+    top = -1;
+  }
+
+  //add value to stack
+  bool push(int i)
+  {
+    if (isFull())
+      return false;
+    else
     {
-        bool didDrive = car.drive();
-        if (!didDrive)
-        {
-            // car is broken! must fix it
-            car.fix();
-        }
+      top++;
+      stack[top] = i;
     }
-    return 0;
-}
+  }
+
+  int pop()
+  {
+    if (isEmpty())
+      throw new exception("Stack is empty");
+      
+    else
+    {
+      return stack[top--];
+    }
+  }
+};
