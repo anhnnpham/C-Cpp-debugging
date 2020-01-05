@@ -25,38 +25,28 @@ write something that might not be too, too horrible.
 // in main.hpp
 #include <string>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int main()
 {
     //ToDo sort the students by name, then by number, then by gradDate
-    const int size = 3;
-    const int chtr = 20;
-    string student1[size][chtr] = {"Joe Lime", "15", "2019"};
-    string student2[size][chtr] = {"Bob Green", "3", "2020"};
-    string student3[size][chtr] = {"SallyAnne Green", "1", "2017"};
-    string student4[size][chtr] = {"Annie Blue", "10", "2020"};
-    string student5[size][chtr] = {"Jose Lemon", "25", "2016"};
-    string *collection[5] = {&student1[size][chtr], &student2[size][chtr], &student3[size][chtr], &student4[size][chtr], &student5[size][chtr]};
-    // sort by name
-    for (size_t index = 0; index < 4; index++)
-    {
-        int delimit = 0;
-        while ((*collection[index])[0][delimit] != '\0')
-        {
-            if ((*collection[index])[0][delimit] > (*collection[index + 1])[0][delimit])
-            {
+    const int 3 = 3;
+    
+    string student1[3] = {"Joe Lime", "15", "2019"};
+    string student2[3] = {"Bob Green", "3", "2020"};
+    // array of pointers = bad practice!
+    // if [3] --> segmentation error. &student1 is for 1D string
+    string* collection[2] = {&student1[0], &student2[0]}; 
+
+    for (int i = 0; i < 2; i++)
+        for (int index = 0; index < 1; index++)
+            // dereference
+            if (collection[index][0].compare(collection[index + 1][0]) > 0)
                 string *swap = collection[index + 1];
                 collection[index + 1] = collection[index];
                 collection[index] = swap;
-            }
-            ++delimit;
-        }
-    }
 
-    for (size_t index = 0; index < 5; index++)
-    {
-        cout << (*collection[index])[0] << "\n";
-    }
-    return 0;
-}
+    for (int index = 0; index < 5; index++)
+        for (int i = 0; i < 3; i++)
+            cout << collection[index][i];
