@@ -1,35 +1,42 @@
-#include <stdio.h>
-/* Complete the array of pointers to functions and call each function using 
- * its pointer from the array. Array of pointers to functions? */
-void f1(int var)
+#include <iostream>
+using namespace std;
+
+class Point;
+std::ostream& operator << (std::ostream& out, const Point& c);
+
+class Point
 {
-  printf("this is f1 and var is: %d\n", var);
+public:
+    Point(int xIn, int yIn) {
+        x = xIn;
+        y = yIn;
+    }
+    Point& operator=(Point rhs) { 
+        x = rhs.x;
+        y = rhs.y;
+        return *this;
+    }
+    int x;
+    int y;
+};
+
+template<typename T>
+void Swap(T & a, T& b) {
+    T temp = a;
+    a = b;
+    b = temp;
 }
 
-void f2(int var)
-{
-  printf("this is f2 and var is: %d\n", var);
+int main() {
+    Point p1(5,5), p2(100, 100);
+    Swap(p1, p2);
+    
+    cout << "p1: " << p1 << "p2: " << p2 << std::endl; // << overloaded
+    return 0;
 }
 
-void f3(int var)
-{
-  printf("this is f3 and var is: %d\n", var);
-}
-
-int main()
-{
-  /* define an array full of function pointers to the above functions, that take an `int` as their only argument */
-  void (*f3_ptr)(int);
-  f3_ptr = &f3;
-  
-  void(*funcPtr[])(int)  = {f1, f2, f3};
-  
-  int c = 0;
-  while (c < 3)
-  {
-    /* call the functions using the function pointers of the array at index `c` with `c` as an argument */
-    funcPtr[c](c);
-    ++c;
-  }
-  return 0;
+std::ostream& operator << (std::ostream& out, const Point& c) {
+  out << "x:" << c.x << " ";
+  out << "y:" << c.y << "\n";
+  return out;
 }
