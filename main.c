@@ -1,34 +1,61 @@
-#include <assert.h>
+#include <iostream>
+using namespace std;
 
-/* Finish initializing the flags */
-const short FLAG_ON          = 1 << 0; // 1  (0x01)
-const short FLAG_MOVEMENT    = 1 << 1; // 2  (0x02)
-const short FLAG_TRANSPARENT = 1 << 2; // 4  (0x04)
-const short FLAG_ALIVE       = 1 << 3;
-const short FLAG_BROKEN      = 1 << 4;
-const short FLAG_EDIBLE      = 1 << 5; // 32 (0x20)
+class Point; class Complex; // prototype for para
+std::ostream& operator <<(std::ostream& out, const Point& p);
+std::ostream& operator <<(std::ostream& out, const Complex& c);
 
-int main() {
-  short attributes = 0;
+template<typename T>
+void Swap(T &a, T &b) { T temp = a; a = b; b = temp; }
 
-  /* If expression evaluates to FALSE, assert() displays an error message on stderr and aborts program execution. */
-  attributes = FLAG_ON | FLAG_TRANSPARENT | FLAG_BROKEN; /* Set the attributes ON, TRANSPARENT, and BROKEN */
-  assert(attributes == FLAG_ON | FLAG_TRANSPARENT | FLAG_BROKEN);
+class Point {
+public:
+    int x, y;
+    Point(int xIn, int yIn) : x(xIn), y(yIn) {}
 
-  /* Modify (set/clear/toggle) so the only attributes are ON and ALIVE */
-  attributes = FLAG_ON | FLAG_ALIVE;
-  assert(attributes == FLAG_ON | FLAG_ALIVE);
+    Point& operator=(Point rhs) { // e.g. "T temp = a". a = para
+        x = rhs.x; y = rhs.y;
+        return *this;
+    }
+};
 
-  /* CHECK if the ALIVE flag is set - AND 1*/
-  attributes = (1 << 3) & FLAG_ALIVE;
-  #include <assert.h>
-  assert(attributes == FLAG_ALIVE); // "prog: prog.cpp:23: int main(): Assertion `attributes == FLAG_ALIVE' failed."
+class Complex : public Point {
+private:
+    int &real, &imag;
+public:
+    //                                          child var = ref to base var
+    Complex(int r, int i) : Point (r, i),       real (x), imag (y) {
+      cout << "Forming..." << *this << std::endl; // << is overloaded
+    }
+    int getReal() const { return real; }
+    int getImag() const { return imag; }
+};
 
-  /* CHECK if the BROKEN flag is not set - AND 0 */
-  attributes = FLAG_BROKEN & ~(1 << 4);
-  assert(attributes == FLAG_BROKEN);
+std::ostream& operator <<(std::ostream& out, const Point& p)
+{
+  out << "x:" << p.x << " ";
+  out << "y:" << p.y << "\n";
+  return out;
+}
 
-  /* MODIFY so only the EDIBLE attribute is set */
-  attributes = FLAG_EDIBLE | (1 << 5);
-  assert(attributes == FLAG_EDIBLE);
+std::ostream& operator <<(std::ostream& out, const Complex& c)
+{
+  out << "x (real): " << c.getReal() << " ";
+  out << "y (imag): " << c.getImag() << "\n";
+  return out;
+}
+
+int main()
+{
+    Complex c1(15, 30), c2 (100, 200);
+
+    // Use the Swap function to swap the Complex objects as Point types
+    Point &p1 = c1, &p2 = c2; // tip: TREAT AS REFERENCE, not "class Point obj"
+    Swap(p1, p2);
+
+    /* Print the swapped objects as Point objects. */
+    cout << "c1: (Point) " << p1 << "c2: " << p2 << std::endl;
+    /* print the swapped objects as Complex objects. */
+    cout << "c1: " << c1 << "c2: " << c2 << std::endl;
+    return 0;
 }
